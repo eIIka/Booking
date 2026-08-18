@@ -183,3 +183,5 @@ README.html
 .run
 
 .smarttomcat/
+
+.env
