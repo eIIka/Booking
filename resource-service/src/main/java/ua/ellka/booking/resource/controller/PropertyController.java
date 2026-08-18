@@ -1,5 +1,6 @@
 package ua.ellka.booking.resource.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class PropertyController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PropertyResp create(@RequestBody PropertyCreateReq req) {
+    public PropertyResp create(@RequestBody @Valid PropertyCreateReq req) {
         return propertyService.create(req);
     }
 
