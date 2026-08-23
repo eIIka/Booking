@@ -3,6 +3,7 @@ package ua.ellka.booking.resource.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ua.ellka.booking.resource.dto.PropertyCreateReq;
 import ua.ellka.booking.resource.dto.PropertyResp;
@@ -18,17 +19,27 @@ public class PropertyController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PropertyResp create(@RequestBody @Valid PropertyCreateReq req) {
-        return propertyService.create(req);
+    public ResponseEntity<PropertyResp> create(@RequestBody @Valid PropertyCreateReq req) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(propertyService.create(req));
     }
 
     @GetMapping("/{id}")
-    public PropertyResp getById(@PathVariable Long id) {
-        return propertyService.findById(id);
+    public ResponseEntity<PropertyResp> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(propertyService.findById(id));
     }
 
     @GetMapping
-    public List<PropertyResp> getAll() {
-        return propertyService.findAll();
+    public ResponseEntity<List<PropertyResp>> getAll() {
+        return ResponseEntity.ok(propertyService.findAll());
+    }
+
+    @GetMapping("/{location}")
+    public ResponseEntity<List<PropertyResp>> getByLocation(@PathVariable String location) {
+        return ResponseEntity.ok(propertyService.findAllByLocation(location));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<PropertyResp> deactivate(@PathVariable Long id) {
+        return ResponseEntity.ok(propertyService.deactivate(id));
     }
 }
