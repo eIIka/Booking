@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 public class PropertyResp {
-    private Integer id;
+    private Long id;
     private String name;
     private String location;
     private PropertyType type;

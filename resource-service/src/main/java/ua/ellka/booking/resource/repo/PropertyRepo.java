@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface PropertyRepo extends JpaRepository<Property, Long> {
 
-    List<Property> findAllByLocationAndActive(String location, Boolean active);
+    List<Property> findAllByLocationIgnoreCaseAndActive(String location, Boolean active);
 
     List<Property> findAllByActive(Boolean active);
 

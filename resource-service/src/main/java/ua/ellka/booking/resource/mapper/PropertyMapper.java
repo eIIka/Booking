@@ -8,7 +8,7 @@ import ua.ellka.booking.resource.model.Property;
 
 @Mapper(componentModel = "spring")
 public interface PropertyMapper {
-    PropertyResp toDto(Property dto);
+    PropertyResp toDto(Property property);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "averageRating", constant = "0.0")

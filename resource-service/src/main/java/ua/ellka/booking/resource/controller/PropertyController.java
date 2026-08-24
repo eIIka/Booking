@@ -18,7 +18,6 @@ public class PropertyController {
     private final PropertyService propertyService;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<PropertyResp> create(@RequestBody @Valid PropertyCreateReq req) {
         return ResponseEntity.status(HttpStatus.CREATED).body(propertyService.create(req));
     }
@@ -29,13 +28,11 @@ public class PropertyController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PropertyResp>> getAll() {
+    public ResponseEntity<List<PropertyResp>> getByLocation(@RequestParam(required = false) String location) {
+        if (location != null && !location.isBlank()) {
+            return ResponseEntity.ok(propertyService.findAllByLocation(location));
+        }
         return ResponseEntity.ok(propertyService.findAll());
-    }
-
-    @GetMapping("/{location}")
-    public ResponseEntity<List<PropertyResp>> getByLocation(@PathVariable String location) {
-        return ResponseEntity.ok(propertyService.findAllByLocation(location));
     }
 
     @PatchMapping("/{id}")
