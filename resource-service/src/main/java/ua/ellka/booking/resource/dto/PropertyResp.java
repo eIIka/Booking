@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 public class PropertyResp {
     private Long id;
     private String name;
+    private String description;
     private String location;
     private PropertyType type;
     private BigDecimal price;
