@@ -1,0 +1,6 @@
+.git
+.gitignore
+.idea
+resource-service/target/
+*.iml
+*.md
